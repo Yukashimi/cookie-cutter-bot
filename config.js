@@ -13,11 +13,13 @@ module.exports = {
   DEFAULT_PORT: process.env.DEFAULT_PORT,
   CURRENT_PORT: process.env.CURRENT_PORT,
 
-  MYSQL: {
-    host: process.env.DATABASE_HOST,
-    port: process.env.DATABASE_PORT,
+  settings: {
+    server: process.env.DATABASE_HOST,
     user: process.env.DATABASE_USER,
-    password: DATABASE_PASSWORD,
-    database: DATABASE_NAME
+    password: process.env.DATABASE_PASSWORD,
+    database: process.env.DATABASE_NAME,
+    options: {
+      encrypt: true
+    }
   }
 }

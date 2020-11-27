@@ -60,6 +60,13 @@ var ConversationPanel = (() => {
       || (newPayload.output && newPayload.output.generic.length > 0);
     if (isUser !== null && textExists) {
       msgOutput(newPayload, isUser);
+
+      const context = newPayload.context.skills["main skill"].user_defined
+      if ((context.consulta_confirmada === "false" || context.consulta_confirmada === "true")
+        && context.pedido_consulta === true) {
+        newPayload.context.skills["main skill"].user_defined.pedido_consulta = false;
+        Api.sendRequest('', newPayload.context); //sends a blank message to watson
+      }
       // chatTimeOut(newPayload);
     }
     // botar msg de erro
